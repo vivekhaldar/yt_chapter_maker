@@ -37,7 +37,7 @@ export OPENAI_API_KEY='your-api-key-here'
 
 Basic usage:
 ```bash
-python src/main.py --input path/to/your/transcript.srt
+uv run yt_chapter_maker --input ~/repos/gh/color_edit/paper_mindmap.edited.srt
 ```
 
 Options:
