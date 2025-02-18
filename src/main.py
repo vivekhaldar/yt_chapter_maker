@@ -11,34 +11,41 @@ from processor import process_llm_response
 from exceptions import ChapterMakerError
 
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
+
 def setup_argparse():
-    parser = argparse.ArgumentParser(description='Generate YouTube chapters and titles from SRT transcript')
-    parser.add_argument('--input', type=str, required=True, help='Path to input SRT file')
-    parser.add_argument('--output', type=str, help='Path to output file (optional)')
-    parser.add_argument('--verbose', action='store_true', help='Enable debug logging')
+    parser = argparse.ArgumentParser(
+        description="Generate YouTube chapters and titles from SRT transcript"
+    )
+    parser.add_argument(
+        "--input", type=str, required=True, help="Path to input SRT file"
+    )
+    parser.add_argument("--output", type=str, help="Path to output file (optional)")
+    parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     return parser
+
 
 def read_srt_file(file_path: str) -> str:
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             return f.read()
     except Exception as e:
         raise ChapterMakerError(f"Error reading SRT file: {str(e)}")
 
+
 def write_output(content: str, output_path: str = None):
     if output_path:
         try:
-            with open(output_path, 'w', encoding='utf-8') as f:
+            with open(output_path, "w", encoding="utf-8") as f:
                 f.write(content)
         except Exception as e:
             raise ChapterMakerError(f"Error writing output file: {str(e)}")
     else:
         print(content)
+
 
 def main():
     parser = setup_argparse()
@@ -49,7 +56,7 @@ def main():
 
     try:
         # Validate API key
-        api_key = os.getenv('OPENAI_API_KEY')
+        api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise ChapterMakerError("OPENAI_API_KEY environment variable not set")
 
@@ -88,5 +95,6 @@ def main():
             logger.exception(e)
         sys.exit(1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
