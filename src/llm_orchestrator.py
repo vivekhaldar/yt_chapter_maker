@@ -25,7 +25,7 @@ class LLMOrchestrator:
                 response = requests.post(
                     self.base_url,
                     headers=self.headers,
-                    json={"model": "gpt-4", "messages": messages, "temperature": 0.7},
+                    json={"model": "gpt-4o", "messages": messages, "temperature": 0.7},
                     timeout=30,
                 )
                 response.raise_for_status()
