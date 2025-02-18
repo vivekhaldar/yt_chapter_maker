@@ -1,0 +1,14 @@
+[project]
+name = "yt-chapter-maker"
+version = "0.1.0"
+description = "Create youtube chapter markers and titles."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32.3",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.6",
+]
