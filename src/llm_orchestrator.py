@@ -42,15 +42,17 @@ class LLMOrchestrator:
                 time.sleep(self.retry_delay * retries)
 
     def generate_chapters(self, srt_content: str) -> str:
-        prompt = """I will give you a video transcript in SRT format. Create logical chapter markers with timestamp and title.
+        prompt = """I will give you a video transcript in SRT format. Create logical chapter markers with timestamp and title. Each chapter should be a distinct section of the video.
+
+    Try to keep chapters to a reasonable length, typically a few minutes each. Usually a ten minute video would have 3-5 chapters.
 
     VERY IMPORTANT: Only output chapter timestamps and titles in this exact format, with no additional text:
-    MM:SS Chapter Title
+    MM:SS - Chapter Title
 
     Example:
-    00:00 Introduction
-    02:15 Main Topic
-    05:30 Conclusion
+    00:00 - Introduction
+    02:15 - Main Topic
+    05:30 - Conclusion
 
     Each timestamp should be on a new line. Do not include any other text, explanations, or formatting in your response."""
         messages = [
