@@ -40,6 +40,12 @@ Basic usage:
 uv run yt_chapter_maker --input ~/repos/gh/color_edit/paper_mindmap.edited.srt
 ```
 
+You can invoke the tool without cloning the repo using "uvx" as follows:
+
+```bash
+uvx --from git+https://github.com/vivekhaldar/yt_chapter_maker  yt_chapter_maker --input ~/repos/gh/color_edit/vibecoding.edited.srt
+```
+
 Options:
 - `--input`: Path to your SRT transcript file (required)
 - `--output`: Path to save the output file (optional, defaults to stdout)
