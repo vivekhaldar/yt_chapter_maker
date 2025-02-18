@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
 import logging
 import os
 import sys
@@ -36,15 +37,16 @@ def read_srt_file(file_path: str) -> str:
         raise ChapterMakerError(f"Error reading SRT file: {str(e)}")
 
 
-def write_output(content: str, output_path: str = None):
-    if output_path:
-        try:
+def write_output(content: dict, output_path: str = None):
+    try:
+        json_content = json.dumps(content, indent=2)
+        if output_path:
             with open(output_path, "w", encoding="utf-8") as f:
-                f.write(content)
-        except Exception as e:
-            raise ChapterMakerError(f"Error writing output file: {str(e)}")
-    else:
-        print(content)
+                f.write(json_content)
+        else:
+            print(json_content)
+    except Exception as e:
+        raise ChapterMakerError(f"Error writing output file: {str(e)}")
 
 
 def main():
@@ -76,11 +78,11 @@ def main():
         titles_response = llm.generate_titles(srt_content)
         titles = process_llm_response(titles_response, response_type="titles")
 
-        # Format output
-        output = "### Chapters ###\n\n"
-        output += chapters
-        output += "\n\n### Suggested Titles ###\n\n"
-        output += titles
+        # Format output as JSON
+        output = {
+            "chapters": chapters,
+            "suggested_titles": titles.split("\n") if isinstance(titles, str) else titles
+        }
 
         # Write or print output
         write_output(output, args.output)

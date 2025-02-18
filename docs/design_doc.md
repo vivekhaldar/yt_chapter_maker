@@ -71,6 +71,7 @@ Each module is designed to be decoupled from the others to facilitate easy repla
 - **Implementation Details**:
   - Use Python's print functions and file I/O as necessary.
   - Ensure the output format is human-readable and easily parsable if needed.
+  - The output should be in JSON format, with two keys: one called "chapters", whose value is a string with the chapters, and another one called "suggested_titles", whose value is a list of strings.
 
 ### 3.6. Error Handling Module
 
