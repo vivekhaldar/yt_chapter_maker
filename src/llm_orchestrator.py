@@ -70,9 +70,12 @@ class LLMOrchestrator:
         return response["choices"][0]["message"]["content"]
 
     def generate_titles(self, srt_content: str) -> str:
-        prompt = """suggest 10 short catchy titles for a youtube video with this content. but i don't want them to be cheesy or sound like clickbait.
+        prompt = """suggest about 10 short catchy titles for a youtube video with this content. but i don't want them to be cheesy or sound like clickbait.
 
-    VERY IMPORTANT: Only output titles, one per line, with no additional text, numbers, or formatting. Example:
+    VERY IMPORTANT: Only output titles, one per line, with no additional text, numbers, or formatting. DO NOT NUMBER THE LIST OF TITLES.
+    
+    Example output:
+
     First Title Here
     Second Title Here
     Third Title Here"""
