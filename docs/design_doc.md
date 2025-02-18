@@ -47,7 +47,7 @@ Each module is designed to be decoupled from the others to facilitate easy repla
 
 - **Implementation Details**:
   - Use Python's requests or http.client libraries to interact with the GPT-4O API.
-  - The API key is provided through an environment variable (e.g., `GPT4O_API_KEY`).
+  - The API key is provided through an environment variable (e.g., `OPENAI_API_KEY`).
   - Define separate methods for sending chapter generation prompt and title generation prompt.
   - Implement retry/backoff logic when API calls fail.
 
